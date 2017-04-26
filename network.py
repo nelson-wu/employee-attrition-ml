@@ -24,6 +24,7 @@ def get_input_data():
     categorical = attrition.select_dtypes(include=['object'])
     categorical_converted = pd.get_dummies(categorical)
     input_data = pd.concat([numerical, categorical_converted], axis=1)
+    input_data = shuffle(input_data)
 
     # Normalize
     min_max_scaler = preprocessing.MinMaxScaler(feature_range=(0, 1))
@@ -79,7 +80,7 @@ def main(argv=None):
     cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y, logits=z_L))
     cross_entropy = tf.Print(cross_entropy, ["cross_entropy", str(cross_entropy)])
 
-    train_step = tf.train.GradientDescentOptimizer(training_step).minimize(cross_entropy)
+    train_step = tf.train.AdamOptimizer(training_step).minimize(cross_entropy)
     correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(a_L, 1))
     accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 

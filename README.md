@@ -6,6 +6,4 @@ The publicly available IBM employee attrition dataset is used. A 1-hidden-layer 
 
 Exploratory data analysis is performed in IBM Attrition EDA.ipynb and the actual model is built up in network.py.
 
-Running with the default hyperparameters (25 hidden units, 100 mini-batches/epoch, 400 training samples, 0.003 training step) yields a peak accuracy of 86% before dropping off due to overfitting.
-
-Changing the hyperparameters to 50 mini-batches and 0.008 training step yields a peak accuracy of 99%.
+Running with tuned hyperparameters yields a peak accuracy of 83% before dropping off due to overfitting.
